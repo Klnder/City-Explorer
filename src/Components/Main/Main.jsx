@@ -37,7 +37,9 @@ export default function Main() {
 
     try {
       //get the weather
-      const APIWeather = `http://localhost:8080/weather?lat=${res.data[0].lat}&lon=${res.data[0].lon}&searchQuery=${searchQuery}`;
+      //https://api-weather-lab.netlify.app/
+      //http://localhost:8080/weather
+      const APIWeather = `https://api-weather-lab.netlify.app/weather?lat=${res.data[0].lat}&lon=${res.data[0].lon}&searchQuery=${searchQuery}`;
       const weatherRes = await axios.get(APIWeather);
       let forecastList = <Weather forecast={weatherRes.data} />;
       setCityForecast(forecastList);
