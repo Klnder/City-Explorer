@@ -18,3 +18,10 @@ input {
 p {
   margin: 1px;
 }
+
+table {
+  border: solid black 1px;
+}
+tr {
+  border: solid red 1px;
+}
