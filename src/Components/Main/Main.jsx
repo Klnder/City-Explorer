@@ -79,42 +79,46 @@ export default function Main() {
 
   return (
     <main>
-      <div class="main-container">
+      <div className="main-container">
         <form>
           <input type="text" placeholder="Enter a city" onChange={handleChange} />
           <button onClick={getLocation}>Search Location</button>
         </form>
-        <div class="info">
+        <div className="info">
           {location && (
-            <article class="data">
-              <div class="container">
-                <div class="Title">
+            <article className="data">
+              <div className="container">
+                <div className="Title">
                   <h1>City information:</h1>
                 </div>
-                <div class="Name">
+                <div className="Name">
                   <p>City Name:</p>
                 </div>
-                <div class="Lat">
+                <div className="Lat">
                   <p>Lat:</p>
                 </div>
-                <div class="Lon">
+                <div className="Lon">
                   <p>Lon:</p>
                 </div>
-                <div class="Namedata">
+                <div className="Namedata">
                   <p>{location.display_name}</p>
                 </div>
-                <div class="Latdata">
+                <div className="Latdata">
                   <p>{location.lat}</p>
                 </div>
-                <div class="londata">
+                <div className="londata">
                   <p>{location.lon}</p>
                 </div>
               </div>
             </article>
           )}
-          {location && <article class="map">{location && <img id="map" src={imgUrl} alt="img location" />}</article>}
-          {showForecast && <article class="weather"> {cityForecast}</article>}
-          {showMovie && <article class="movie"> {movieList}</article>}
+          {location && (
+            <article className="map">
+              <img id="map" src={imgUrl} alt="img location" />
+            </article>
+          )}
+          {showForecast && <article className="weather"> {cityForecast}</article>}
+          {showMovie && <article className="movie"> {movieList}</article>}
         </div>
       </div>
     </main>
