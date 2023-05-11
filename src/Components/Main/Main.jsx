@@ -47,10 +47,10 @@ export default function Main() {
   async function getWeather(location) {
     try {
       //get the weather
-      //https://api-weather-lab.netlify.app/
+      //https://city-explorer-api-sha1.onrender.com/
       //http://localhost:8080/weather
 
-      const APIWeather = `http://localhost:8080/weather?lat=${location.lat}&lon=${location.lon}&searchQuery=${searchQuery}`;
+      const APIWeather = `https://city-explorer-api-sha1.onrender.com/weather?lat=${location.lat}&lon=${location.lon}&searchQuery=${searchQuery}`;
       const weatherRes = await axios.get(APIWeather);
       let forecastList = <Weather forecast={weatherRes.data} />;
       setCityForecast(forecastList);
@@ -64,7 +64,7 @@ export default function Main() {
   async function getMovie(location) {
     try {
       //get the movie list
-      const APIMovie = `http://localhost:8080/movies?searchQuery=${searchQuery}`;
+      const APIMovie = `https://city-explorer-api-sha1.onrender.com/movies?searchQuery=${searchQuery}`;
       const movieRes = await axios.get(APIMovie);
       let movieList = <Movie movie={movieRes.data} />;
       console.log(movieList);
