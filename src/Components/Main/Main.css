@@ -19,9 +19,104 @@ p {
   margin: 1px;
 }
 
-table {
-  border: solid black 1px;
+.main-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 10px;
 }
-tr {
-  border: solid red 1px;
+.info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.data,
+.map,
+.weather {
+  width: 30%;
+}
+
+article {
+  background-color: #79b669;
+  margin-bottom: 20px;
+  box-sizing: content-box;
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.25s;
+}
+article:hover {
+  box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1.05);
+}
+.weather {
+  display: flex;
+  justify-content: center;
+}
+table {
+  width: 100%;
+}
+#map {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* table data */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Title Title"
+    "Name Namedata"
+    "Lat Latdata"
+    "Lon londata";
+  height: 100%;
+}
+
+.Title {
+  justify-self: center;
+  align-self: center;
+  grid-area: Title;
+  font-weight: bold;
+}
+
+.Name {
+  justify-self: center;
+  align-self: center;
+  grid-area: Name;
+  font-weight: bold;
+}
+
+.Lat {
+  justify-self: center;
+  align-self: center;
+  grid-area: Lat;
+  font-weight: bold;
+}
+
+.Lon {
+  justify-self: center;
+  align-self: center;
+  grid-area: Lon;
+  font-weight: bold;
+}
+
+.Namedata {
+  justify-self: center;
+  align-self: center;
+  grid-area: Namedata;
+}
+
+.Latdata {
+  justify-self: center;
+  align-self: center;
+  grid-area: Latdata;
+}
+
+.londata {
+  justify-self: center;
+  align-self: center;
+  grid-area: londata;
 }

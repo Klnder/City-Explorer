@@ -1,0 +1,17 @@
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: solid black 2px;
+}
+.poster-img {
+  width: 60px;
+  height: 60px;
+}
+
+th,
+td,
+tr {
+  text-align: center;
+  padding: 4px;
+  border: solid black 2px;
+}
