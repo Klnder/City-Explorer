@@ -50,7 +50,7 @@ export default function Main() {
       //https://city-explorer-api-sha1.onrender.com/
       //http://localhost:8080/weather
 
-      const APIWeather = `https://city-explorer-api-sha1.onrender.com/weather?lat=${location.lat}&lon=${location.lon}&searchQuery=${searchQuery}`;
+      const APIWeather = `${process.env.REACT_APP_SERVER_API_ADDRESS}/weather?lat=${location.lat}&lon=${location.lon}&searchQuery=${searchQuery}`;
       const weatherRes = await axios.get(APIWeather);
       let forecastList = <Weather forecast={weatherRes.data} />;
       setCityForecast(forecastList);
@@ -64,10 +64,10 @@ export default function Main() {
   async function getMovie(location) {
     try {
       //get the movie list
-      const APIMovie = `https://city-explorer-api-sha1.onrender.com/movies?searchQuery=${searchQuery}`;
+      //${process.env.SERVER_API_ADDRESS}
+      const APIMovie = `${process.env.REACT_APP_SERVER_API_ADDRESS}/movies?searchQuery=${searchQuery}`;
       const movieRes = await axios.get(APIMovie);
       let movieList = <Movie movie={movieRes.data} />;
-      console.log(movieList);
       setMovieList(movieList);
       setShowMovie(true);
     } catch (error) {
