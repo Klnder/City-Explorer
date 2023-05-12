@@ -1,9 +1,9 @@
 import React from "react";
 
 export default function Weather(props) {
-  let tableForecast = props.forecast.map((data) => {
+  let tableForecast = props.forecast.map((data, index) => {
     return (
-      <tr>
+      <tr key={index}>
         <td>{data.date}</td>
         <td>
           <img src={data.icon} alt="icon weather" className="icon" />

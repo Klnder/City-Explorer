@@ -1,17 +1,24 @@
 import React from "react";
 import "./Movie.css";
+import image from "./placeholderNoimg.png";
 
 export default function Movie(props) {
-  let tableMovie = props.movie.map((movie) => {
-    let srcMovie = `https://image.tmdb.org/t/p/original${movie.image_url}`;
+  let tableMovie = props.movie.map((movie, index) => {
+    let srcMovie;
+    if (movie.image_url) {
+      srcMovie = `https://image.tmdb.org/t/p/original${movie.image_url}`;
+    } else {
+      srcMovie = image;
+    }
+
     return (
-      <tr>
+      <tr key={index}>
         <td>{movie.title}</td>
         <td>{movie.overview}</td>
         <td>{movie.average_votes}</td>
         <td>{movie.total_votes}</td>
         <td>
-          <img class="poster-img" src={srcMovie} alt="movie poster" />
+          <img className="poster-img" src={srcMovie} alt="movie poster" />
         </td>
         <td>{movie.popularity}</td>
         <td>{movie.released_on}</td>
