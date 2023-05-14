@@ -10,7 +10,7 @@
 
 .grid {
   height: 60vh;
-  width: 60vw;
+  width: 80vw;
   margin: 10vh auto;
 
   display: grid;
@@ -107,6 +107,6 @@
 }
 
 .modal-img-movie {
-  height: 80%;
-  width: 80%;
+  height: 50%;
+  width: 50%;
 }
