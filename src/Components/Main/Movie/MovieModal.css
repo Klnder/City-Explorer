@@ -27,10 +27,83 @@
   grid-area: Img;
 }
 
-.Details {
+/* grid css */
+.details {
   justify-self: center;
   align-self: center;
   grid-area: Details;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "title title-data"
+    "overview overview-data"
+    "average-vote average-vote-data"
+    "popularity popularity-data"
+    "released-date released-date-data";
+}
+
+.title {
+  justify-self: center;
+  align-self: center;
+  grid-area: title;
+}
+
+.overview {
+  justify-self: center;
+  align-self: center;
+  grid-area: overview;
+}
+
+.average-vote {
+  justify-self: center;
+  align-self: center;
+  grid-area: average-vote;
+}
+
+.popularity {
+  justify-self: center;
+  align-self: center;
+  grid-area: popularity;
+}
+
+.released-date {
+  justify-self: center;
+  align-self: center;
+  grid-area: released-date;
+}
+
+.title-data {
+  justify-self: center;
+  align-self: center;
+  grid-area: title-data;
+}
+
+.overview-data {
+  justify-self: center;
+  align-self: center;
+  grid-area: overview-data;
+}
+
+.average-vote-data {
+  justify-self: center;
+  align-self: center;
+  grid-area: average-vote-data;
+}
+
+.popularity-data {
+  justify-self: center;
+  align-self: center;
+  grid-area: popularity-data;
+}
+
+.released-date-data {
+  justify-self: center;
+  align-self: center;
+  grid-area: released-date-data;
 }
 
 .modal-img-movie {
