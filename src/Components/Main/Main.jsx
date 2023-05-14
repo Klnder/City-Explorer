@@ -80,37 +80,54 @@ export default function Main() {
       //get the weather
       const APIWeather = `${process.env.REACT_APP_SERVER_API_ADDRESS}/weather?searchQuery=${location.location_name}`;
       const weatherRes = await axios.get(APIWeather);
-      let forecastList = <Weather forecast={weatherRes.data} />;
-      setCityForecast(forecastList);
-      setShowForecast(true);
+      if (weatherRes.data) {
+        let forecastList = <Weather forecast={weatherRes.data} />;
+        setCityForecast(forecastList);
+        setShowForecast(true);
+      } else {
+        setShowForecast(false);
+        setCityForecast("");
+      }
     } catch (error) {
       setCityForecast("");
       setShowForecast(false);
       console.log(error.response);
     }
   }
+
   async function getMovies(location) {
     try {
       //get the movie list
       const APIMovie = `${process.env.REACT_APP_SERVER_API_ADDRESS}/movies?searchQuery=${location.location_name}`;
       const movieRes = await axios.get(APIMovie);
-      let movieList = <Movie movie={movieRes.data} handleModal={handleModalMovie} />;
-      setMovieList(movieList);
-      setShowMovie(true);
+      if (movieRes.data) {
+        let movieList = <Movie movie={movieRes.data} handleModal={handleModalMovie} />;
+        setMovieList(movieList);
+        setShowMovie(true);
+      } else {
+        setShowMovie(false);
+        setMovieList("");
+      }
     } catch (error) {
       setMovieList("");
       setShowMovie(false);
       console.log(error.response);
     }
   }
+
   async function getRestaurants(location) {
     try {
       //get the restaurant list
       const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
       const restaurantRes = await axios.get(APIRestaurant);
-      let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
-      setRestaurantList(restaurantList);
-      setShowRestaurant(true);
+      if (restaurantRes.data) {
+        let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
+        setRestaurantList(restaurantList);
+        setShowRestaurant(true);
+      } else {
+        setShowRestaurant(false);
+        setRestaurantList("");
+      }
     } catch (error) {
       setRestaurantList("");
       setShowRestaurant(false);
