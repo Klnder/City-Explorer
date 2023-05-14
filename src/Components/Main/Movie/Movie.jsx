@@ -7,7 +7,7 @@ export default function Movie(props) {
     return <MovieDetail movie={movie} key={index} handleModal={props.handleModal} />;
   });
   return (
-    <table>
+    <table className="movie-container">
       <thead>
         <tr>
           <th>Title</th>

@@ -17,7 +17,7 @@ export default function Restaurants(props) {
     );
   });
   return (
-    <table>
+    <table className="restaurant-container">
       <thead>
         <tr>
           <th>name</th>

@@ -1,0 +1,57 @@
+/* table data */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Title Title"
+    "Name Namedata"
+    "Lat Latdata"
+    "Lon londata";
+  height: 100%;
+}
+
+.title {
+  justify-self: center;
+  align-self: center;
+  grid-area: Title;
+  font-weight: bold;
+}
+
+.name {
+  justify-self: center;
+  align-self: center;
+  grid-area: Name;
+  font-weight: bold;
+}
+
+.lat {
+  justify-self: center;
+  align-self: center;
+  grid-area: Lat;
+  font-weight: bold;
+}
+
+.lon {
+  justify-self: center;
+  align-self: center;
+  grid-area: Lon;
+  font-weight: bold;
+}
+
+.namedata {
+  align-self: center;
+  grid-area: Namedata;
+}
+
+.latdata {
+  align-self: center;
+  grid-area: Latdata;
+}
+
+.londata {
+  align-self: center;
+  grid-area: londata;
+}

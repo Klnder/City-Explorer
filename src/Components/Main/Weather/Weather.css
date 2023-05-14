@@ -1,0 +1,8 @@
+.weather-container {
+  width: 100%;
+  height: 100%;
+}
+.icon-weather {
+  width: 1.5rem;
+  height: 1.5rem;
+}

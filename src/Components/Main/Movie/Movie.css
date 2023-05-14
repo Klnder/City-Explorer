@@ -15,3 +15,7 @@ tr {
   padding: 4px;
   border: solid black 2px;
 }
+
+.movie-container {
+  width: 100%;
+}

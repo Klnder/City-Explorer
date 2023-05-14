@@ -7,22 +7,29 @@ import Movie from "./Movie/Movie";
 import MovieModal from "./Movie/MovieModal";
 import Restaurants from "./Restaurants/Restaurants";
 import RestaurantModal from "./Restaurants/RestaurantModal";
+import CityInformation from "./CityInformation/CityInformation";
 
 export default function Main() {
   const [searchQuery, setSearchQuery] = useState("");
   const [location, setLocation] = useState("");
   const [imgUrl, setimgUrl] = useState("");
+  //city information
+  const [cityInformation, setCityInformation] = useState("");
+  const [showCityInformation, setShowCityInformation] = useState(false);
+  //weather
   const [cityForecast, setCityForecast] = useState("");
   const [showForecast, setShowForecast] = useState(false);
+  //movie
   const [movieList, setMovieList] = useState("");
   const [showMovie, setShowMovie] = useState(false);
+  const [modalMovie, setModalMovie] = useState({});
+  const [showModalMovie, setShowModalMovie] = useState(false);
+  const [modalMovieImg, setModalMovieImg] = useState("");
+  //restaurant
   const [restaurantList, setRestaurantList] = useState("");
   const [showRestaurant, setShowRestaurant] = useState(false);
   const [modalRestaurant, setModalRestaurant] = useState({});
   const [showModalRestaurant, setShowModalRestaurant] = useState(false);
-  const [modalMovie, setModalMovie] = useState({});
-  const [showModalMovie, setShowModalMovie] = useState(false);
-  const [modalMovieImg, setModalMovieImg] = useState("");
 
   function handleChange(event) {
     setSearchQuery(event.target.value);
@@ -44,7 +51,10 @@ export default function Main() {
       });
       let newLocation = locations[0];
 
-      console.log(newLocation);
+      let cityElement = <CityInformation city={newLocation} />;
+      setCityInformation(cityElement);
+      setShowCityInformation(true);
+
       setLocation(newLocation);
       getMap(newLocation);
       getWeather(newLocation);
@@ -128,33 +138,7 @@ export default function Main() {
           <button onClick={getLocation}>Search Location</button>
         </form>
         <div className="info">
-          {location && (
-            <article className="data">
-              <div className="container">
-                <div className="title">
-                  <h1>City information:</h1>
-                </div>
-                <div className="name">
-                  <p>City Name:</p>
-                </div>
-                <div className="lat">
-                  <p>Lat:</p>
-                </div>
-                <div className="lon">
-                  <p>Lon:</p>
-                </div>
-                <div className="namedata">
-                  <p>{location.display_name}</p>
-                </div>
-                <div className="latdata">
-                  <p>{location.lat}</p>
-                </div>
-                <div className="londata">
-                  <p>{location.lon}</p>
-                </div>
-              </div>
-            </article>
-          )}
+          {showCityInformation && <article className="data">{cityInformation}</article>}
           {location && (
             <article className="map">
               <img id="map" src={imgUrl} alt="img location" />
