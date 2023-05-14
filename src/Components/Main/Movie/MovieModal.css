@@ -6,15 +6,16 @@
   right: 0vw;
   background-color: rgb(0, 0, 0, 0.7);
   color: white;
+  box-sizing: border-box;
 }
 
 .grid {
-  height: 60vh;
-  width: 80vw;
-  margin: 10vh auto;
+  height: 60%;
+  width: 80%;
+  margin: 10% auto;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
@@ -29,29 +30,28 @@
 
 /* grid css */
 .details {
-  justify-self: center;
-  align-self: center;
   grid-area: Details;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 80%;
+  margin: auto;
 
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "title title-data"
+    "title-header title-data"
     "overview overview-data"
     "average-vote average-vote-data"
     "popularity popularity-data"
     "released-date released-date-data";
 }
 
-.title {
+.title-header {
   justify-self: center;
   align-self: center;
-  grid-area: title;
+  grid-area: title-header;
 }
 
 .overview {
@@ -79,31 +79,26 @@
 }
 
 .title-data {
-  justify-self: center;
   align-self: center;
   grid-area: title-data;
 }
 
 .overview-data {
-  justify-self: center;
   align-self: center;
   grid-area: overview-data;
 }
 
 .average-vote-data {
-  justify-self: center;
   align-self: center;
   grid-area: average-vote-data;
 }
 
 .popularity-data {
-  justify-self: center;
   align-self: center;
   grid-area: popularity-data;
 }
 
 .released-date-data {
-  justify-self: center;
   align-self: center;
   grid-area: released-date-data;
 }

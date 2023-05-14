@@ -10,7 +10,7 @@ export default function MovieModal({ movie, handleModal, imgUrl }) {
         </div>
 
         <div className="details">
-          <div className="title">
+          <div className="title-header">
             <p>Title:</p>
           </div>
           <div className="overview">

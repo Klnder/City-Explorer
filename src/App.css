@@ -2,6 +2,7 @@
   width: 100vw;
   height: 100vh;
   font-family: "Rajdhani", sans-serif;
+  box-sizing: border-box;
 }
 body {
   background-color: #1f8505;
