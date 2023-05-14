@@ -36,6 +36,10 @@ p {
 .weather {
   width: 30%;
 }
+.movie,
+.restaurant {
+  width: 48%;
+}
 
 article {
   background-color: #79b669;
@@ -79,40 +83,40 @@ table {
   height: 100%;
 }
 
-.Title {
+.title {
   justify-self: center;
   align-self: center;
   grid-area: Title;
   font-weight: bold;
 }
 
-.Name {
+.name {
   justify-self: center;
   align-self: center;
   grid-area: Name;
   font-weight: bold;
 }
 
-.Lat {
+.lat {
   justify-self: center;
   align-self: center;
   grid-area: Lat;
   font-weight: bold;
 }
 
-.Lon {
+.lon {
   justify-self: center;
   align-self: center;
   grid-area: Lon;
   font-weight: bold;
 }
 
-.Namedata {
+.namedata {
   align-self: center;
   grid-area: Namedata;
 }
 
-.Latdata {
+.latdata {
   align-self: center;
   grid-area: Latdata;
 }
@@ -120,4 +124,9 @@ table {
 .londata {
   align-self: center;
   grid-area: londata;
+}
+
+h1 {
+  text-align: center;
+  padding-bottom: 3px;
 }

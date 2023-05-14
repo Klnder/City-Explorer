@@ -1,26 +1,15 @@
 import React from "react";
+import DailyWeather from "./DailyWeather";
 
 export default function Weather(props) {
   let tableForecast = props.forecast.map((data, index) => {
-    return (
-      <tr key={index}>
-        <td>{data.date}</td>
-        <td>
-          <img src={data.icon} alt="icon weather" className="icon" />
-        </td>
-        <td>{data.description}</td>
-        <td>{data.mintemp}</td>
-        <td>{data.maxtemp}</td>
-      </tr>
-    );
+    return <DailyWeather data={data} key={index} />;
   });
-
   return (
     <table>
       <thead>
         <tr>
           <th>Date</th>
-          <th>Icon</th>
           <th>Forecast</th>
           <th>Min Temp C</th>
           <th>Max Temp C</th>

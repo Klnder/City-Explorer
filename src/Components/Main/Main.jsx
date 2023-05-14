@@ -2,8 +2,11 @@ import React from "react";
 import "./Main.css";
 import { useState } from "react";
 import axios from "axios";
-import Weather from "./Weather";
-import Movie from "./Movie";
+import Weather from "./Weather/Weather";
+import Movie from "./Movie/Movie";
+import MovieModal from "./Movie/MovieModal";
+import Restaurants from "./Restaurants/Restaurants";
+import RestaurantModal from "./Restaurants/RestaurantModal";
 
 export default function Main() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,6 +16,13 @@ export default function Main() {
   const [showForecast, setShowForecast] = useState(false);
   const [movieList, setMovieList] = useState("");
   const [showMovie, setShowMovie] = useState(false);
+  const [restaurantList, setRestaurantList] = useState("");
+  const [showRestaurant, setShowRestaurant] = useState(false);
+  const [modalRestaurant, setModalRestaurant] = useState({});
+  const [showModalRestaurant, setShowModalRestaurant] = useState(false);
+  const [modalMovie, setModalMovie] = useState({});
+  const [showModalMovie, setShowModalMovie] = useState(false);
+  const [modalMovieImg, setModalMovieImg] = useState("");
 
   function handleChange(event) {
     setSearchQuery(event.target.value);
@@ -24,11 +34,22 @@ export default function Main() {
       //get city information on the api
       const API = `https://eu1.locationiq.com/v1/search?key=${process.env.REACT_APP_API_KEY}&q=${searchQuery}&format=json`;
       const res = await axios.get(API);
-      let newLocation = res.data[0];
+      let locations = res.data.map((location) => {
+        return {
+          display_name: location.display_name,
+          location_name: location.display_name.split(",")[0],
+          lat: location.lat,
+          lon: location.lon,
+        };
+      });
+      let newLocation = locations[0];
+
+      console.log(newLocation);
       setLocation(newLocation);
       getMap(newLocation);
       getWeather(newLocation);
-      getMovie(newLocation);
+      getMovies(newLocation);
+      getRestaurants(newLocation);
     } catch (error) {
       if (error.response.status === 404) {
         alert("No location found with such name !");
@@ -47,10 +68,7 @@ export default function Main() {
   async function getWeather(location) {
     try {
       //get the weather
-      //https://city-explorer-api-sha1.onrender.com/
-      //http://localhost:8080/weather
-
-      const APIWeather = `${process.env.REACT_APP_SERVER_API_ADDRESS}/weather?lat=${location.lat}&lon=${location.lon}&searchQuery=${searchQuery}`;
+      const APIWeather = `${process.env.REACT_APP_SERVER_API_ADDRESS}/weather?searchQuery=${location.location_name}`;
       const weatherRes = await axios.get(APIWeather);
       let forecastList = <Weather forecast={weatherRes.data} />;
       setCityForecast(forecastList);
@@ -61,13 +79,12 @@ export default function Main() {
       console.log(error.response);
     }
   }
-  async function getMovie(location) {
+  async function getMovies(location) {
     try {
       //get the movie list
-      //${process.env.SERVER_API_ADDRESS}
-      const APIMovie = `${process.env.REACT_APP_SERVER_API_ADDRESS}/movies?searchQuery=${searchQuery}`;
+      const APIMovie = `${process.env.REACT_APP_SERVER_API_ADDRESS}/movies?searchQuery=${location.location_name}`;
       const movieRes = await axios.get(APIMovie);
-      let movieList = <Movie movie={movieRes.data} />;
+      let movieList = <Movie movie={movieRes.data} handleModal={handleModalMovie} />;
       setMovieList(movieList);
       setShowMovie(true);
     } catch (error) {
@@ -76,9 +93,35 @@ export default function Main() {
       console.log(error.response);
     }
   }
+  async function getRestaurants(location) {
+    try {
+      //get the restaurant list
+      const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
+      const restaurantRes = await axios.get(APIRestaurant);
+      let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
+      setRestaurantList(restaurantList);
+      setShowRestaurant(true);
+    } catch (error) {
+      setRestaurantList("");
+      setShowRestaurant(false);
+      console.log(error.response);
+    }
+  }
+
+  function handleModalRestaurant(restaurant) {
+    setShowModalRestaurant(!showModalRestaurant);
+    setModalRestaurant(restaurant);
+  }
+  function handleModalMovie(movie, srcMovie) {
+    setShowModalMovie(!showModalMovie);
+    setModalMovie(movie);
+    setModalMovieImg(srcMovie);
+  }
 
   return (
     <main>
+      {showModalRestaurant && <RestaurantModal handleModal={handleModalRestaurant} restaurant={modalRestaurant} />}
+      {showModalMovie && <MovieModal handleModal={handleModalMovie} movie={modalMovie} imgUrl={modalMovieImg} />}
       <div className="main-container">
         <form>
           <input type="text" placeholder="Enter a city" onChange={handleChange} />
@@ -88,22 +131,22 @@ export default function Main() {
           {location && (
             <article className="data">
               <div className="container">
-                <div className="Title">
+                <div className="title">
                   <h1>City information:</h1>
                 </div>
-                <div className="Name">
+                <div className="name">
                   <p>City Name:</p>
                 </div>
-                <div className="Lat">
+                <div className="lat">
                   <p>Lat:</p>
                 </div>
-                <div className="Lon">
+                <div className="lon">
                   <p>Lon:</p>
                 </div>
-                <div className="Namedata">
+                <div className="namedata">
                   <p>{location.display_name}</p>
                 </div>
-                <div className="Latdata">
+                <div className="latdata">
                   <p>{location.lat}</p>
                 </div>
                 <div className="londata">
@@ -117,8 +160,19 @@ export default function Main() {
               <img id="map" src={imgUrl} alt="img location" />
             </article>
           )}
-          {showForecast && <article className="weather"> {cityForecast}</article>}
-          {showMovie && <article className="movie"> {movieList}</article>}
+          {showForecast && <article className="weather">{cityForecast}</article>}
+          {showMovie && (
+            <article className="movie">
+              <h1>Top movies:</h1>
+              {movieList}
+            </article>
+          )}
+          {showRestaurant && (
+            <article className="restaurant">
+              <h1>Top 20 restaurants: </h1>
+              {restaurantList}
+            </article>
+          )}
         </div>
       </div>
     </main>
