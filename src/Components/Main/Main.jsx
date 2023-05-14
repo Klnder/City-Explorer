@@ -5,7 +5,7 @@ import axios from "axios";
 import Weather from "./Weather/Weather";
 import Movie from "./Movie/Movie";
 import MovieModal from "./Movie/MovieModal";
-import Restaurants from "./Restaurants/Restaurants";
+//import Restaurants from "./Restaurants/Restaurants";
 import RestaurantModal from "./Restaurants/RestaurantModal";
 
 export default function Main() {
@@ -16,8 +16,8 @@ export default function Main() {
   const [showForecast, setShowForecast] = useState(false);
   const [movieList, setMovieList] = useState("");
   const [showMovie, setShowMovie] = useState(false);
-  const [restaurantList, setRestaurantList] = useState("");
-  const [showRestaurant, setShowRestaurant] = useState(false);
+  //const [restaurantList, setRestaurantList] = useState("");
+  //const [showRestaurant, setShowRestaurant] = useState(false);
   const [modalRestaurant, setModalRestaurant] = useState({});
   const [showModalRestaurant, setShowModalRestaurant] = useState(false);
   const [modalMovie, setModalMovie] = useState({});
