@@ -93,7 +93,7 @@ export default function Main() {
       console.log(error.response);
     }
   }
-  async function getRestaurants(location) {
+  //async function getRestaurants(location) {
     try {
       //get the restaurant list
       const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
@@ -106,7 +106,7 @@ export default function Main() {
       setShowRestaurant(false);
       console.log(error.response);
     }
-  }
+  //}
 
   function handleModalRestaurant(restaurant) {
     setShowModalRestaurant(!showModalRestaurant);
