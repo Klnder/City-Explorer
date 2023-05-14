@@ -49,7 +49,7 @@ export default function Main() {
       getMap(newLocation);
       getWeather(newLocation);
       getMovies(newLocation);
-      getRestaurants(newLocation);
+      //getRestaurants(newLocation);
     } catch (error) {
       if (error.response.status === 404) {
         alert("No location found with such name !");
