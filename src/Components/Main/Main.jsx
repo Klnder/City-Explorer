@@ -5,7 +5,7 @@ import axios from "axios";
 import Weather from "./Weather/Weather";
 import Movie from "./Movie/Movie";
 import MovieModal from "./Movie/MovieModal";
-//import Restaurants from "./Restaurants/Restaurants";
+import Restaurants from "./Restaurants/Restaurants";
 import RestaurantModal from "./Restaurants/RestaurantModal";
 
 export default function Main() {
@@ -16,8 +16,8 @@ export default function Main() {
   const [showForecast, setShowForecast] = useState(false);
   const [movieList, setMovieList] = useState("");
   const [showMovie, setShowMovie] = useState(false);
-  //const [restaurantList, setRestaurantList] = useState("");
-  //const [showRestaurant, setShowRestaurant] = useState(false);
+  const [restaurantList, setRestaurantList] = useState("");
+  const [showRestaurant, setShowRestaurant] = useState(false);
   const [modalRestaurant, setModalRestaurant] = useState({});
   const [showModalRestaurant, setShowModalRestaurant] = useState(false);
   const [modalMovie, setModalMovie] = useState({});
@@ -49,7 +49,7 @@ export default function Main() {
       getMap(newLocation);
       getWeather(newLocation);
       getMovies(newLocation);
-      //getRestaurants(newLocation);
+      getRestaurants(newLocation);
     } catch (error) {
       if (error.response.status === 404) {
         alert("No location found with such name !");
@@ -93,20 +93,20 @@ export default function Main() {
       console.log(error.response);
     }
   }
-  //async function getRestaurants(location) {
-  // try {
-  //   //get the restaurant list
-  //   const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
-  //   const restaurantRes = await axios.get(APIRestaurant);
-  //   let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
-  //   setRestaurantList(restaurantList);
-  //   setShowRestaurant(true);
-  // } catch (error) {
-  //   setRestaurantList("");
-  //   setShowRestaurant(false);
-  //   console.log(error.response);
-  // }
-  //}
+  async function getRestaurants(location) {
+    try {
+      //get the restaurant list
+      const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
+      const restaurantRes = await axios.get(APIRestaurant);
+      let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
+      setRestaurantList(restaurantList);
+      setShowRestaurant(true);
+    } catch (error) {
+      setRestaurantList("");
+      setShowRestaurant(false);
+      console.log(error.response);
+    }
+  }
 
   function handleModalRestaurant(restaurant) {
     setShowModalRestaurant(!showModalRestaurant);
@@ -167,12 +167,12 @@ export default function Main() {
               {movieList}
             </article>
           )}
-          {/* {showRestaurant && (
+          {showRestaurant && (
             <article className="restaurant">
               <h1>Top 20 restaurants: </h1>
               {restaurantList}
             </article>
-          )} */}
+          )}
         </div>
       </div>
     </main>
