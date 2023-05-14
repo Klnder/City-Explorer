@@ -94,18 +94,18 @@ export default function Main() {
     }
   }
   //async function getRestaurants(location) {
-    try {
-      //get the restaurant list
-      const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
-      const restaurantRes = await axios.get(APIRestaurant);
-      let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
-      setRestaurantList(restaurantList);
-      setShowRestaurant(true);
-    } catch (error) {
-      setRestaurantList("");
-      setShowRestaurant(false);
-      console.log(error.response);
-    }
+    // try {
+    //   //get the restaurant list
+    //   const APIRestaurant = `${process.env.REACT_APP_SERVER_API_ADDRESS}/restaurants?searchQuery=${location.location_name}`;
+    //   const restaurantRes = await axios.get(APIRestaurant);
+    //   let restaurantList = <Restaurants restaurants={restaurantRes.data} handleModal={handleModalRestaurant} />;
+    //   setRestaurantList(restaurantList);
+    //   setShowRestaurant(true);
+    // } catch (error) {
+    //   setRestaurantList("");
+    //   setShowRestaurant(false);
+    //   console.log(error.response);
+    // }
   //}
 
   function handleModalRestaurant(restaurant) {
